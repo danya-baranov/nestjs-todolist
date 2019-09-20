@@ -31,6 +31,7 @@
 ## Installation
 
 ```bash
+$ npm install --save-dev @types/mongoose
 $ npm install
 ```
 
