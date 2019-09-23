@@ -1,0 +1,27 @@
+<ion-header *ngIf="item">
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="items"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{item.title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="deleteItem(item._id)">
+        Delete<ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content class="ion-padding">
+  <div *ngIf="item">
+    <ion-item>
+      <ion-label position="stacked">Item Title</ion-label>
+      <ion-input [(ngModel)]="item.title" placeholder="Item Title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Item Description</ion-label>
+      <ion-input [(ngModel)]="item.description" placeholder="Item Description"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="updateItem()">Save</ion-button>
+  </div>
+</ion-content>
