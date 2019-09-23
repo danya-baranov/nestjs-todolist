@@ -26,7 +26,7 @@ export class ItemsPage implements OnInit {
 
 
   getItems(): void {
-    this.items = this.itemsClientService.getItems()
+    this.items = this.itemsClientService.getItems();
   }
 
  addItem() {

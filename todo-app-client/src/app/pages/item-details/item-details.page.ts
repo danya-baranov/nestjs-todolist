@@ -63,7 +63,7 @@ export class ItemDetailsPage implements OnInit {
         ]
     }).then(alert => {
       alert.present();
-    });
+    });   
   }
 
   updateItem() {

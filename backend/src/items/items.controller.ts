@@ -1,6 +1,5 @@
 import { ItemsService } from './items.service';
-import { MorganInterceptor } from 'nest-morgan';
-import { Controller, Post, Body, Get, Param, Patch, Delete, Res, HttpStatus, NotFoundException, UseInterceptors, Query, Put } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Delete, Res, HttpStatus, NotFoundException, Query, Put } from '@nestjs/common';
 import { CreateItemDTO } from 'src/dto/item.dto';
 
 @Controller('items')
@@ -13,7 +12,7 @@ export class ItemsController {
     async addItem(@Res() res, @Body() createItemDTO: CreateItemDTO) {
         const itemAdd = await this.itemService.insertItem(createItemDTO);
         return res.status(HttpStatus.OK).json({
-            message: 'Product Successfully Created',
+            message: 'Ited Successfully Added',
             itemAdd,
         });
     }
@@ -36,7 +35,7 @@ export class ItemsController {
         const updatedItem = await this.itemService.updateItem(itemId, createItemDTO);
         if (!updatedItem) { throw new NotFoundException('Item does not exist!'); }
         return res.status(HttpStatus.OK).json({
-            message: 'Product Updated Successfully',
+            message: 'Item Updated Successfully',
             updatedItem,
         });
     }
