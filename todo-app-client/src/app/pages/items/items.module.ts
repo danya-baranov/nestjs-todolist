@@ -15,6 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  providers: [ ItemsPage ],
   imports: [
     CommonModule,
     FormsModule,

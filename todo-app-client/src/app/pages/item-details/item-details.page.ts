@@ -1,10 +1,8 @@
-import { ItemsPage } from './../items/items.page';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItemsClientService } from 'src/app/services/items-client.service';
 import { ToastController, AlertController } from '@ionic/angular';
 import { Item } from 'src/app/item';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-item-details',
@@ -17,7 +15,7 @@ export class ItemDetailsPage implements OnInit {
     private itemsClientService: ItemsClientService,
     private router: Router,
     private toastCtrl: ToastController,
-    private alertCtrl: AlertController,
+    private alertCtrl: AlertController
       ) { }
 
   item: Item = {
@@ -63,10 +61,15 @@ export class ItemDetailsPage implements OnInit {
         ]
     }).then(alert => {
       alert.present();
-    });   
+    });
   }
 
   updateItem() {
+    if (!this.item.title) {
+      return;
+      }
+    if (!this.item.description) {return;
+       }
     this.itemsClientService.updateItem(this.item._id, this.item)
       .subscribe(
         async res => {

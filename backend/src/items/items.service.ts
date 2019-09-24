@@ -34,4 +34,5 @@ export class ItemsService {
                             .findByIdAndUpdate(itemId, createItemDTO);
         return updatedItem;
     }
+
 }

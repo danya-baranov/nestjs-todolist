@@ -1,6 +1,5 @@
 import { ItemsClientService } from './../../services/items-client.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Item } from 'src/app/item';
 
 @Component({
@@ -9,7 +8,7 @@ import { Item } from 'src/app/item';
   styleUrls: ['./items.page.scss'],
 })
 export class ItemsPage implements OnInit {
-  items: Observable<any>;
+  items: Item[];
 
   item: Item = {
     title: '',
@@ -17,16 +16,22 @@ export class ItemsPage implements OnInit {
   };
 
   constructor(private itemsClientService: ItemsClientService) {
+    this.items = [];
    }
 
-  ngOnInit() {
+   ionViewWillEnter() {
     this.getItems();
-    console.log(this.items);
+   }
+
+
+  ngOnInit() {
   }
 
-
-  getItems(): void {
-    this.items = this.itemsClientService.getItems();
+   getItems() {
+   this.itemsClientService.getItems()
+   .subscribe(x => {
+     this.items = x;
+    });
   }
 
  addItem() {
@@ -44,3 +49,4 @@ export class ItemsPage implements OnInit {
    );
  }
 }
+

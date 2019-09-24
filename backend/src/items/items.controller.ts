@@ -31,7 +31,7 @@ export class ItemsController {
     }
 
     @Put('/update')
-    async updateProduct(@Res() res, @Body() createItemDTO: CreateItemDTO, @Query('itemId') itemId) {
+    async updateItem(@Res() res, @Body() createItemDTO: CreateItemDTO, @Query('itemId') itemId) {
         const updatedItem = await this.itemService.updateItem(itemId, createItemDTO);
         if (!updatedItem) { throw new NotFoundException('Item does not exist!'); }
         return res.status(HttpStatus.OK).json({

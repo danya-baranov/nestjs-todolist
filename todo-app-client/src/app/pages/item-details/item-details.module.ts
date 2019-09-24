@@ -6,7 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ItemDetailsPage } from './item-details.page';
-import { ItemsPage } from '../items/items.page';
 
 const routes: Routes = [
   {
@@ -16,7 +15,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  providers: [],
   imports: [
     CommonModule,
     FormsModule,
