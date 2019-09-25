@@ -24,7 +24,7 @@ export class ItemsService {
         return newItem.save();
     }
 
-    async deleteItem(itemId: string): Promise<any> {
+    async deleteItem(itemId: string): Promise<Item> {
         const deleteItem = await this.itemModel.findByIdAndDelete(itemId);
         return deleteItem;
     }

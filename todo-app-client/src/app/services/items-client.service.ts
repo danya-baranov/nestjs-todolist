@@ -10,7 +10,7 @@ export class ItemsClientService {
 
   constructor(private http: HttpClient) { }
 
-  API_URL: 'http://localhost:3000/items';
+  API_URL = 'http://localhost:3000/items';
 
   getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(this.API_URL);
