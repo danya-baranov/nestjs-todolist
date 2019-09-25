@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ItemsClientService } from 'src/app/services/items-client.service';
 import { ToastController, AlertController } from '@ionic/angular';
 import { Item } from 'src/app/item';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 @Component({
   selector: 'app-item-details',
@@ -10,18 +12,29 @@ import { Item } from 'src/app/item';
   styleUrls: ['./item-details.page.scss'],
 })
 export class ItemDetailsPage implements OnInit {
+  item: Item;
+
+  data: string;
+
+  photos: any;
+
   constructor(
     private route: ActivatedRoute,
     private itemsClientService: ItemsClientService,
     private router: Router,
     private toastCtrl: ToastController,
-    private alertCtrl: AlertController
-      ) { }
+    private alertCtrl: AlertController,
+    private camera: Camera,
+    private file: File
+  ) {
+    this.item = {
+      title: '',
+      description: ''
+    };
 
-  item: Item = {
-    title: '',
-    description: '' ,
-  };
+    this.photos = [];
+  }
+
 
   ngOnInit() {
     const params = this.route.snapshot.params;
@@ -45,31 +58,27 @@ export class ItemDetailsPage implements OnInit {
           text: 'Okay',
           handler: () => {
             this.itemsClientService.deleteItem(id)
-            .subscribe(
-              res => {
-                console.log(res);
-                this.router.navigateByUrl('/');
-              },
-              err => console.log(err)
-            );
+              .subscribe(
+                res => {
+                  console.log(res);
+                  this.router.navigateByUrl('/');
+                },
+                err => console.log(err)
+              );
           }
         },
         {
           text: 'Cancel',
           role: 'cancel'
         }
-        ]
+      ]
     }).then(alert => {
       alert.present();
     });
   }
 
   updateItem() {
-    if (!this.item.title) {
-      return;
-      }
-    if (!this.item.description) {return;
-       }
+    this.validation();
     this.itemsClientService.updateItem(this.item._id, this.item)
       .subscribe(
         async res => {
@@ -77,12 +86,37 @@ export class ItemDetailsPage implements OnInit {
             position: 'top',
             message: 'Item saved',
             duration: 3000
-        });
+          });
           console.log(res);
           toast.present();
           this.router.navigate(['/items']);
         },
         err => console.log(err)
       );
+  }
+
+  takePhotos() {
+    const options: CameraOptions = {
+      quality: 100,
+      mediaType: this.camera.MediaType.PICTURE,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+    }
+    this.camera.getPicture().then((imageData) => {
+      let filename = imageData.substring(imageData.lastIndexOf('/') + 1);
+      let path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
+      this.file.readAsDataURL(path, filename).then((base64data) => {
+        this.photos.push(base64data);
+      });
+  });
+}
+
+  private validation() {
+    if (!this.item.title) {
+      return;
+    }
+    if (!this.item.description) {
+      return;
+    }
   }
 }

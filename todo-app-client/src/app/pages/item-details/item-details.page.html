@@ -27,4 +27,14 @@
     </ion-item>
     <ion-button expand="block"(click)="updateItem()">Save</ion-button>
   </div>
+
+  <div class="ion-padding">
+    <ion-button (click)="takePhotos()" expand="full" color="dark">
+      TakePhotos
+    </ion-button>
+    <ion-list *ngFor= "let photo of photos">
+      <ion-img src={{photo}} style="width: 200px;height: 150px;"></ion-img>
+    </ion-list>
+  
+  </div>
 </ion-content>
