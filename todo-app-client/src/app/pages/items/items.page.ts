@@ -84,15 +84,15 @@ export class ItemsPage implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
     }
     this.camera.getPicture().then((imageData) => {
-      let filename = imageData.substring(imageData.lastIndexOf('/') + 1);
-      let path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
+      const filename = imageData.substring(imageData.lastIndexOf('/') + 1);
+      const path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
       this.file.readAsDataURL(path, filename).then((base64data) => {
         this.photos.push(base64data);
       });
       console.log(this.photos);
-      
-  });
-}
+
+    });
+  }
 
 
 }

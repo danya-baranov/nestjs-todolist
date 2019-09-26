@@ -11,7 +11,7 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
- 
+
 <ion-content class="ion-padding">
   <div *ngIf="item">
     <ion-item>
@@ -25,16 +25,25 @@
     <ion-item>
       <ion-toggle slot="end" class="padding" name="cherry" color="danger" [(ngModel)]="item.done"></ion-toggle>
     </ion-item>
-    <ion-button expand="block"(click)="updateItem()">Save</ion-button>
+    <ion-button expand="block" (click)="updateItem()">Save</ion-button>
   </div>
 
-  <div class="ion-padding">
-    <ion-button (click)="takePhotos()" expand="full" color="dark">
-      TakePhotos
-    </ion-button>
-    <ion-list *ngFor= "let photo of photos">
-      <ion-img src={{photo}} style="width: 200px;height: 150px;"></ion-img>
+
+  <div class="">
+      <ion-fab vertical="bottom" horizontal="center" slot="fixed" (click)="takePhotos()">
+          <ion-fab-button>
+            <ion-icon name="camera"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+    <ion-list>
+      <ion-row>
+        <ion-col size="6" *ngFor="let photo of photos">
+          <ion-img src="{{photo}}"></ion-img>
+        </ion-col>
+      </ion-row>
+
     </ion-list>
-  
+
   </div>
+
 </ion-content>

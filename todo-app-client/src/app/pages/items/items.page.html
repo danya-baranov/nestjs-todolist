@@ -39,25 +39,5 @@
       <ion-badge *ngIf=!item.done color="danger">in progress</ion-badge>
     </ion-item>
   </ion-list>
-
-
-
-
-  <div class="">
-      <ion-list>
-          <ion-row>
-              <ion-col size="6" *ngFor="let photo of photos">
-                  <ion-img src="{{photo}}"></ion-img>
-              </ion-col>
-         </ion-row>
-      </ion-list>
-            <ion-fab vertical="bottom" horizontal="center" slot="fixed" (click)="takePhotos()">
-                <ion-fab-button>
-                    <ion-icon name="camera"></ion-icon>
-                </ion-fab-button>
-          </ion-fab>
-    </div>
-
     
- 
 </ion-content>

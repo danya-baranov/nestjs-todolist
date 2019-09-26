@@ -8,6 +8,7 @@ export class ItemsController {
 
     @Post('/add')
     async addItem(@Res() res, @Body() createItemDTO: CreateItemDTO) {
+        debugger;
         const itemAdd = await this.itemService.insertItem(createItemDTO);
         return res.status(HttpStatus.OK).json({
             message: 'Ited Successfully Added',
@@ -17,6 +18,7 @@ export class ItemsController {
 
     @Get()
     async getAllItems() {
+        debugger;
         const items = await this.itemService.getItems();
         return items;
     }

@@ -5,7 +5,6 @@ import { ToastController, AlertController } from '@ionic/angular';
 import { Item } from 'src/app/item';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
-
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.page.html',
@@ -13,7 +12,6 @@ import { File } from '@ionic-native/file/ngx';
 })
 export class ItemDetailsPage implements OnInit {
   item: Item;
-
   data: string;
 
   photos: any;
@@ -49,7 +47,6 @@ export class ItemDetailsPage implements OnInit {
         );
     }
   }
-
   deleteItem(id: string): void {
     this.alertCtrl.create({
       header: 'Are you sure?',
@@ -102,14 +99,15 @@ export class ItemDetailsPage implements OnInit {
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
     }
+
     this.camera.getPicture().then((imageData) => {
-      let filename = imageData.substring(imageData.lastIndexOf('/') + 1);
-      let path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
+      const filename = imageData.substring(imageData.lastIndexOf('/') + 1);
+      const path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
       this.file.readAsDataURL(path, filename).then((base64data) => {
         this.photos.push(base64data);
       });
-  });
-}
+    });
+  }
 
   private validation() {
     if (!this.item.title) {
