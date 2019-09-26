@@ -2,8 +2,8 @@ import { ItemsClientService } from './../../services/items-client.service';
 import { Component, OnInit } from '@angular/core';
 import { Item } from 'src/app/item';
 import { Router } from '@angular/router';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { File } from '@ionic-native/file/ngx';
+
+
 
 @Component({
   selector: 'app-items',
@@ -18,8 +18,6 @@ export class ItemsPage implements OnInit {
   constructor(
     private itemsClientService: ItemsClientService,
     private router: Router,
-    private camera: Camera,
-    private file: File
   ) {
     this.items = [];
 
@@ -49,7 +47,7 @@ export class ItemsPage implements OnInit {
     setTimeout(() => {
       this.getItems();
       event.target.complete();
-    }, 2000);
+    }, 1000);
   }
 
   addItem() {
@@ -75,25 +73,5 @@ export class ItemsPage implements OnInit {
       return;
     }
   }
-
-  takePhotos() {
-    const options: CameraOptions = {
-      quality: 100,
-      mediaType: this.camera.MediaType.PICTURE,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-    }
-    this.camera.getPicture().then((imageData) => {
-      const filename = imageData.substring(imageData.lastIndexOf('/') + 1);
-      const path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
-      this.file.readAsDataURL(path, filename).then((base64data) => {
-        this.photos.push(base64data);
-      });
-      console.log(this.photos);
-
-    });
-  }
-
-
 }
 

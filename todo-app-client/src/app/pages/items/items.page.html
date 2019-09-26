@@ -7,29 +7,26 @@
   </ion-toolbar>
 </ion-header>
 <ion-item>
-    <ion-label required position="stacked">Item Title</ion-label>
-    <ion-input [(ngModel)]="item.title" placeholder="Item Title"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label required position="stacked">Item Description</ion-label>
-    <ion-input [(ngModel)]="item.description" placeholder="Item Description"></ion-input>
-  </ion-item>
-  <ion-buttons class="ion-padding">
-    <ion-button fill="outline" color="danger" (click)="addItem()">Add<ion-icon name="add" slot="end"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-    
+  <ion-label required position="stacked">Item Title</ion-label>
+  <ion-input [(ngModel)]="item.title" placeholder="Item Title"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label required position="stacked">Item Description</ion-label>
+  <ion-input [(ngModel)]="item.description" placeholder="Item Description"></ion-input>
+</ion-item>
+<ion-buttons class="ion-padding">
+  <ion-button fill="outline" color="danger" (click)="addItem()">Add<ion-icon name="add" slot="end"></ion-icon>
+  </ion-button>
+</ion-buttons>
+
 <ion-content class="ion-padding">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content
-        pullingIcon="arrow-dropdown"
-        pullingText="Pull to refresh"
-        refreshingSpinner="lines"
-        refreshingText="Refreshing...">
-      </ion-refresher-content>
-    </ion-refresher>
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="lines"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list>
-      
+
     <ion-item *ngFor="let item of items" class="ion-no-padding">
       <ion-label (click)="navigateToItemDetails(item._id)">
         <h2>{{ item.title }}</h2>
@@ -39,5 +36,5 @@
       <ion-badge *ngIf=!item.done color="danger">in progress</ion-badge>
     </ion-item>
   </ion-list>
-    
+
 </ion-content>

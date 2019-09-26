@@ -30,19 +30,18 @@
 
 
   <div class="">
-      <ion-fab vertical="bottom" horizontal="center" slot="fixed" (click)="takePhotos()">
-          <ion-fab-button>
-            <ion-icon name="camera"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
-    <ion-list>
-      <ion-row>
-        <ion-col size="6" *ngFor="let photo of photos">
-          <ion-img src="{{photo}}"></ion-img>
-        </ion-col>
-      </ion-row>
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed" (click)="takePhotos()">
+      <ion-fab-button>
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
-    </ion-list>
+
+    <ion-slides [options]="sliderConfig">
+      <ion-slide *ngFor="let photo of photos">
+        <ion-img src="{{photo}}"></ion-img>
+      </ion-slide>
+    </ion-slides>
 
   </div>
 

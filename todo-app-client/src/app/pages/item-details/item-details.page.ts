@@ -5,6 +5,8 @@ import { ToastController, AlertController } from '@ionic/angular';
 import { Item } from 'src/app/item';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
+
+
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.page.html',
@@ -13,6 +15,7 @@ import { File } from '@ionic-native/file/ngx';
 export class ItemDetailsPage implements OnInit {
   item: Item;
   data: string;
+  sliderConfig: {};
 
   photos: any;
 
@@ -23,7 +26,7 @@ export class ItemDetailsPage implements OnInit {
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
     private camera: Camera,
-    private file: File
+    private file: File,
   ) {
     this.item = {
       title: '',
@@ -31,6 +34,12 @@ export class ItemDetailsPage implements OnInit {
     };
 
     this.photos = [];
+
+    this.sliderConfig = {
+      slidesPerView: 1.6,
+      spaceBetween: 10,
+      centeredSlides: true,
+    };
   }
 
 
