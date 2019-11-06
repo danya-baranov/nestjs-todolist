@@ -24,7 +24,7 @@
     "@nestjs/mongoose": "^6.1.2",
     "@nestjs/platform-express": "^6.0.0",
     "@types/morgan": "^1.7.37",
-    "mongoose": "^5.7.1",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "nest-morgan": "^1.0.1",
     "reflect-metadata": "^0.1.12",
